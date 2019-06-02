@@ -5,6 +5,10 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+gem 'reform', '>= 2.2.0'
+gem 'reform-rails'
+gem 'trailblazer', '>= 2.0.4'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -25,10 +29,11 @@ gem 'puma', '~> 3.11'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
-gem 'trailblazer-rails'
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
+
+# documentation
+gem 'apitome'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -36,6 +41,7 @@ group :development, :test do
   gem 'guard', require: false
   gem 'guard-bundler', require: false
   gem 'guard-rspec', require: false
+  gem 'rspec_api_documentation'
 end
 
 group :development do
@@ -47,6 +53,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'faker'
 end
 
 
