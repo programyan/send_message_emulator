@@ -41,12 +41,12 @@ RSpec.describe Messages::Forms::MessageForm do
 
     context 'when structure' do
       let(:messengers) { [messenger1] }
-      let(:messenger1) { { type: type, user_id: user_id } }
+      let(:messenger1) { { name: name, user_id: user_id } }
 
-      let(:type) { nil }
+      let(:name) { nil }
       let(:user_id) { nil }
 
-      it { expect(error_messages[:"messengers.type"]).to include "can't be blank" }
+      it { expect(error_messages[:"messengers.name"]).to include "can't be blank" }
       it { expect(error_messages[:"messengers.user_id"]).to include "can't be blank" }
 
       context 'with valid user_id' do
@@ -55,17 +55,27 @@ RSpec.describe Messages::Forms::MessageForm do
         it { expect(error_messages[:"messengers.user_id"]).to be_blank }
       end
 
-      context 'with invalid type' do
-        let(:type) { Faker::Lorem.word }
+      context 'with invalid name' do
+        let(:name) { Faker::Lorem.word }
 
-        it { expect(error_messages[:"messengers.type"]).to include 'is not included in the list' }
+        it { expect(error_messages[:"messengers.name"]).to include 'is not included in the list' }
       end
 
-      context 'with invalid type' do
-        let(:type) { MessengerTypes.all.sample }
+      context 'with invalid name' do
+        let(:name) { MessengerNames.all.sample }
 
-        it { expect(error_messages[:"messengers.type"]).to be_blank }
+        it { expect(error_messages[:"messengers.name"]).to be_blank }
       end
+
+      context 'with uniq messengers' do
+        let(:messengers) { [messenger1, messenger1] }
+        let(:messenger1) { { name: name, user_id: user_id } }
+        let(:name) { MessengerNames.all.sample }
+        let(:user_id) { Faker::PhoneNumber.cell_phone }
+
+        it { expect(error_messages[:messengers]).to include 'has already been taken' }
+      end
+
     end
   end
 end

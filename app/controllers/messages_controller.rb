@@ -9,6 +9,6 @@ class MessagesController < ApplicationController
       return
     end
 
-    render json: @form.errors, status: :unprocessable_entity
+    render json: result['contract.default'].errors, status: :unprocessable_entity
   end
 end

@@ -11,8 +11,8 @@ RSpec.resource 'API - Messages', acceptance: true do
     let(:body) { Faker::Lorem.sentence }
     let(:sent_at) { Time.current }
     let(:messengers) { [messenger1, messenger2] }
-    let(:messenger1) { { type: MessengerTypes.all.sample, user_id: Faker::PhoneNumber.cell_phone } }
-    let(:messenger2) { { type: MessengerTypes.all.sample, user_id: Faker::PhoneNumber.cell_phone } }
+    let(:messenger1) { { name: MessengerNames.all.sample, user_id: Faker::PhoneNumber.cell_phone } }
+    let(:messenger2) { { name: MessengerNames.all.sample, user_id: Faker::PhoneNumber.cell_phone } }
 
     example_request 'Create' do
       expect(response_status).to eq(201)

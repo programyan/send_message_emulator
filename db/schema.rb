@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2019_06_01_082759) do
 
   create_table "messages", force: :cascade do |t|
     t.string "body"
-    t.datetime "sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -22,8 +21,8 @@ ActiveRecord::Schema.define(version: 2019_06_01_082759) do
   create_table "messengers", force: :cascade do |t|
     t.integer "message_id", null: false
     t.string "user_id", null: false
-    t.string "type", null: false
-    t.string "status", default: "in_progress", null: false
+    t.string "name", null: false
+    t.datetime "sent_at"
     t.index ["message_id"], name: "index_messengers_on_message_id"
   end
 
