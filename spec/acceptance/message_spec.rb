@@ -4,9 +4,9 @@ require 'acceptance_helper'
 
 RSpec.resource 'API - Messages', acceptance: true do
   post '/messages' do
-    parameter :body
-    parameter :sent_at
-    parameter :messengers
+    parameter :body, 'Текст сообщения'
+    parameter :sent_at, 'Время отправки (для отложенной отправки)'
+    parameter :messengers, 'Получатели сообщения'
 
     let(:body) { Faker::Lorem.sentence }
     let(:sent_at) { Time.current }
